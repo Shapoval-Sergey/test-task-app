@@ -4,14 +4,13 @@ import { connect } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
-import { userOperations } from "../redux/user/";
+import userOperations from "../redux/user/userOperations";
 
 import routes from "../routes";
 
 class App extends Component {
   componentDidMount() {
-    this.props.onGetCurrentUser();
-    console.log("trying");
+    this.props.onCreateUser();
   }
 
   render() {
@@ -34,5 +33,5 @@ class App extends Component {
 }
 
 export default connect(null, {
-  onGetCurrentUser: userOperations.getCurrentUser,
+  onCreateUser: userOperations.createUser,
 })(App);

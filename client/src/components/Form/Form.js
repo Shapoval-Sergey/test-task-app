@@ -1,10 +1,10 @@
 import React, { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 
-import projectsOperations from "../../redux/projects/projectsOperations";
+import userOperations from "../../redux/user/userOperations";
 import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
 
-import s from "./ProjectEditor.module.scss";
+import s from "./Form.module.css";
 
 export default function Form({ onClose }) {
   const [email, setEmail] = useState("");
@@ -27,7 +27,7 @@ export default function Form({ onClose }) {
         return;
       }
 
-      dispatch(projectsOperations.addColaborators({ email }));
+      dispatch(userOperations.addUserEmail({ email }));
 
       onClose();
     },

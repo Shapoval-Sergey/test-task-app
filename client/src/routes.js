@@ -3,19 +3,17 @@ import { lazy } from "react";
 const routes = [
   {
     path: "/actions",
-    label: "Shared",
+    label: "PageLoaded",
     exact: true,
     component: lazy(() => import("./views/PageLoaded/PageLoaded.js")),
     private: false,
-    restricted: false,
   },
   {
     path: "/final",
-    label: "Final",
+    label: "FinalPage",
     exact: true,
     component: lazy(() => import("./views/FinalPage/FinalPage")),
     private: true,
-    restricted: false,
   },
 ];
 

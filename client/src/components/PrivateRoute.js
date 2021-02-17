@@ -3,13 +3,18 @@ import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const PrivateRoute = ({ component: Component, ...routeProps }) => {
-  const isAuthenticated = useSelector((state) => state.user.token);
+  const isShared = useSelector((state) => state.user.shared);
+  const isEmail = useSelector((state) => state.user.email);
 
   return (
     <Route
       {...routeProps}
       render={(props) =>
-        isAuthenticated ? <Component {...props} /> : <Redirect to="/login" />
+        isShared && isEmail ? (
+          <Component {...props} />
+        ) : (
+          <Redirect to="/actions" />
+        )
       }
     />
   );

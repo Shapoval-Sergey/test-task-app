@@ -2,19 +2,19 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import { userSelectors } from "../redux/user/";
+import userSelectors from "../redux/user/userSelectors";
 
 const PublicRoute = ({
   component: Component,
-  isAuthenticated,
-  restricted,
+  isShared,
+  isEmail,
   ...routeProps
 }) => (
   <Route
     {...routeProps}
     render={(props) =>
-      isAuthenticated && restricted ? (
-        <Redirect to="/" />
+      !isShared || !isEmail ? (
+        <Redirect to="/actions" />
       ) : (
         <Component {...props} />
       )
@@ -23,7 +23,8 @@ const PublicRoute = ({
 );
 
 const mapStateToProps = (state) => ({
-  isAuthenticated: userSelectors.isAuthenticated(state),
+  isShared: userSelectors.isShared(state),
+  isEmail: userSelectors.isEmail(state),
 });
 
 export default connect(mapStateToProps)(PublicRoute);
