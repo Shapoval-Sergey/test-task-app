@@ -8,6 +8,7 @@ const User = require("../models/User");
 
 router.post("/actions", async (req, res) => {
   try {
+    // const { shared, email } = req.body;
     const user = new User();
     // const currentUser = await User.findOne({ _id: id });
     // console.log(currentUser);

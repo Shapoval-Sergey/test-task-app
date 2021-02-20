@@ -13,11 +13,7 @@ const PublicRoute = ({
   <Route
     {...routeProps}
     render={(props) =>
-      !isShared || !isEmail ? (
-        <Redirect to="/actions" />
-      ) : (
-        <Component {...props} />
-      )
+      isShared && isEmail ? <Redirect to="/final" /> : <Component {...props} />
     }
   />
 );

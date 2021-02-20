@@ -1,6 +1,6 @@
 <svg aria-hidden="true" style="position: absolute; width: 0; height: 0; overflow: hidden;" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
 <defs>
-<symbol id="icon-spritefacebook" viewBox="0 0 32 32">
+<symbol id="facebook" viewBox="0 0 32 32">
 <path fill="#3b5998" style="fill: var(--color1, #3b5998)" d="M32 16c0 8.837-7.163 16-16 16s-16-7.163-16-16c0-8.837 7.163-16 16-16s16 7.163 16 16z"></path>
 <path fill="#fff" style="fill: var(--color2, #fff)" d="M20.022 16.626h-2.855v10.459h-4.326v-10.459h-2.057v-3.676h2.057v-2.379c0-1.701 0.808-4.365 4.364-4.365l3.204 0.013v3.568h-2.325c-0.381 0-0.918 0.191-0.918 1.002v2.163h3.233l-0.378 3.672z"></path>
 </symbol>

@@ -12,7 +12,7 @@ const routes = [
     path: "/final",
     label: "FinalPage",
     exact: true,
-    component: lazy(() => import("./views/FinalPage/FinalPage")),
+    component: lazy(() => import("./views/FinalPage/FinalPage.js")),
     private: true,
   },
 ];

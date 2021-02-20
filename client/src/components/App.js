@@ -1,19 +1,20 @@
 import React, { Suspense, Component } from "react";
 import { BrowserRouter, Switch } from "react-router-dom";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import PrivateRoute from "./PrivateRoute";
 import PublicRoute from "./PublicRoute";
 
-import userOperations from "../redux/user/userOperations";
+// import userOperations from "../redux/user/userOperations";
 
 import routes from "../routes";
 
-class App extends Component {
-  componentDidMount() {
-    this.props.onCreateUser();
-  }
+export default class App extends Component {
+  // componentDidMount() {
+  //   this.props.onCreateUser();
+  // }
 
   render() {
+    console.log(PublicRoute);
     return (
       <BrowserRouter>
         <Suspense fallback={<h1>Loading...</h1>}>
@@ -32,6 +33,6 @@ class App extends Component {
   }
 }
 
-export default connect(null, {
-  onCreateUser: userOperations.createUser,
-})(App);
+// export default connect(null, {
+//   onCreateUser: userOperations.createUser,
+// })(App);

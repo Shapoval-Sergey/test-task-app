@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { createReducer } from "@reduxjs/toolkit";
 import userActions from "./userActions";
 
-const createUser = createReducer(
+const createNewUser = createReducer(
   {},
   {
     [userActions.createUserSuccess]: (state, { payload }) => payload,
@@ -10,5 +10,5 @@ const createUser = createReducer(
 );
 
 export default combineReducers({
-  createUser,
+  createNewUser,
 });

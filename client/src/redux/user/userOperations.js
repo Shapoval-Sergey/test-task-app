@@ -2,7 +2,7 @@ import axios from "axios";
 
 import userActions from "./userActions";
 
-const baseURL = "http://localhost:5000/api/user";
+const baseURL = "http://localhost:3000/api/user";
 
 const createUser = () => async (dispatch) => {
   try {
@@ -10,7 +10,7 @@ const createUser = () => async (dispatch) => {
 
     const { data } = await axios.post(`${baseURL}/actions`);
     console.log("data", data);
-    const { user } = data.data;
+    const user = data;
     console.log("user", user);
 
     if (!data) {
@@ -20,13 +20,16 @@ const createUser = () => async (dispatch) => {
 
     dispatch(userActions.createUserSuccess(user));
   } catch (e) {
-    console.log(e);
     dispatch(userActions.createUserError(e));
   }
 };
 
-const addUserEmail = () => async (dispatch) => {
+const addUserEmail = ({ email }) => async (dispatch) => {
   try {
+    dispatch(userActions.addUserRequest());
+
+    const { data } = await axios.post(`${baseURL}/actions`, { email });
+    dispatch(userActions.addUserSuccess(data));
   } catch (e) {
     console.log(e);
     dispatch(userActions.addUserError(e));
