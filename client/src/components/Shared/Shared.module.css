@@ -1,4 +1,31 @@
 .icon {
   display: block;
-  width: 32px;
+  width: 53px;
+  padding-right: 20px;
+  cursor: pointer;
+  transform: scale(1);
+  transition: transform 250ms linear;
+}
+
+.icon:hover,
+.icon:focus {
+  transform: scale(1.1);
+}
+
+.box {
+  display: block;
+}
+
+.boxDisabled {
+  display: block;
+  pointer-events: none;
+  opacity: 0.5;
+  background: #cd718e;
+}
+
+.about__list {
+  display: flex;
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
 }

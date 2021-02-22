@@ -13,14 +13,17 @@ export default function PageLoaded() {
 
   const data = JSON.parse(localStorage.getItem(storageName));
   if (!data) {
-    localStorage.setItem(storageName, JSON.stringify(user));
+    const newData = localStorage.setItem(storageName, JSON.stringify(user));
+    return newData;
   }
 
   return (
     <div className={s.page}>
       <div className={s.logo}></div>
-      <Shared />
-      <Form />
+      <div className={s.content}>
+        <Shared />
+        <Form />
+      </div>
     </div>
   );
 }

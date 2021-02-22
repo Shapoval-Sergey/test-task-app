@@ -24,20 +24,60 @@ const createUser = () => async (dispatch) => {
   }
 };
 
-const addUserEmail = ({ email }) => async (dispatch) => {
+const getCurrentUser = () => async (dispatch) => {
   try {
-    dispatch(userActions.addUserRequest());
+    dispatch(userActions.getCurrentUserRequest());
 
-    const { data } = await axios.post(`${baseURL}/actions`, { email });
-    dispatch(userActions.addUserSuccess(data));
+    const { data } = await axios.get(`${baseURL}/actions`);
+
+    const user = data;
+    console.log("user", user);
+
+    if (!data) {
+      dispatch(userActions.getCurrentUserError());
+      return;
+    }
+
+    dispatch(userActions.getCurrentUserSuccess(user));
+  } catch (e) {
+    dispatch(userActions.getCurrentUserError(e));
+  }
+};
+
+const updateUserEmail = ({ email }) => async (dispatch) => {
+  try {
+    dispatch(userActions.updateEmailRequest());
+
+    const { data } = await axios.patch(`${baseURL}/actions`, { email });
+    dispatch(userActions.updateEmailSuccess(data));
   } catch (e) {
     console.log(e);
-    dispatch(userActions.addUserError(e));
+    dispatch(userActions.updateEmailError(e));
+  }
+};
+
+const updateUserShared = (userId, shared) => async (dispatch) => {
+  try {
+    console.log(userId);
+    console.log(shared);
+    dispatch(userActions.updateSharedRequest());
+
+    const { data } = await axios.patch(`${baseURL}/actions`, {
+      id: userId,
+      shared: shared,
+    });
+
+    dispatch(userActions.updateSharedSuccess(data));
+  } catch (e) {
+    console.log(e);
+    dispatch(userActions.updateSharedError(e));
   }
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
   createUser,
-  addUserEmail,
+  updateUserEmail,
+  updateUserShared,
+  getCurrentUser,
 };

@@ -2,15 +2,12 @@ import React, { useState, useCallback } from "react";
 import { useDispatch } from "react-redux";
 
 import userOperations from "../../redux/user/userOperations";
-import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
 
 import s from "./Form.module.css";
 
 export default function Form({ onClose }) {
   const [email, setEmail] = useState("");
-  const [errorEmail, setErrorEmail] = useState("");
-
-  // const token = useSelector(state => state.auth.token);
+  // const [errorEmail, setErrorEmail] = useState("");
 
   const dispatch = useDispatch();
 
@@ -23,7 +20,7 @@ export default function Form({ onClose }) {
       e.preventDefault();
 
       if (email === "") {
-        setErrorEmail(true);
+        // setErrorEmail(true);
         return;
       }
 
@@ -34,27 +31,24 @@ export default function Form({ onClose }) {
     [dispatch, email, onClose],
   );
 
-  const handleCanselingBtn = (e) => {
-    // console.log(e);
-    onClose();
-  };
+  // const handleCanselingBtn = (e) => {
+  //   // console.log(e);
+  //   onClose();
+  // };
 
   return (
-    <>
+    <div className={s.form}>
       <h2>Оставь почту:</h2>
-      <form className={s.form} onSubmit={handleSubmit}>
+      <form className={s.box} onSubmit={handleSubmit}>
         <input
           type="email"
           value={email}
           onChange={handleChangeEmail}
           name="email"
-          className={!errorEmail ? s.formInput : s.error}
+          className={s.input}
         />
-        <PrimaryBtn text={"Готово"} typeBtn={"submit"} />
-        <p className={s.cansel} onClick={handleCanselingBtn}>
-          Відміна
-        </p>
+        <button type="submit" className={s.btn}></button>
       </form>
-    </>
+    </div>
   );
 }

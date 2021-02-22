@@ -4,9 +4,17 @@ const createUserRequest = createAction("USER/userRequest");
 const createUserSuccess = createAction("USER/userSuccess");
 const createUserError = createAction("USER/userError");
 
-const addUserRequest = createAction("USER/addRequest");
-const addUserSuccess = createAction("USER/addSuccess");
-const addUserError = createAction("USER/addError");
+const getCurrentUserRequest = createAction("USER/getUserRequest");
+const getCurrentUserSuccess = createAction("USER/getUserSuccess");
+const getCurrentUserError = createAction("USER/getUserError");
+
+const updateEmailRequest = createAction("USER/updateEmailRequest");
+const updateEmailSuccess = createAction("USER/updateEmailSuccess");
+const updateEmailError = createAction("USER/updateEmailError");
+
+const updateSharedRequest = createAction("USER/updateSharedRequest");
+const updateSharedSuccess = createAction("USER/updateSharedSuccess");
+const updateSharedError = createAction("USER/updateSharedError");
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
@@ -14,7 +22,15 @@ export default {
   createUserSuccess,
   createUserError,
 
-  addUserRequest,
-  addUserSuccess,
-  addUserError,
+  updateSharedRequest,
+  updateSharedSuccess,
+  updateSharedError,
+
+  updateEmailRequest,
+  updateEmailSuccess,
+  updateEmailError,
+
+  getCurrentUserRequest,
+  getCurrentUserSuccess,
+  getCurrentUserError,
 };

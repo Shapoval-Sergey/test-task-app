@@ -6,6 +6,9 @@ const createNewUser = createReducer(
   {},
   {
     [userActions.createUserSuccess]: (state, { payload }) => payload,
+    [userActions.getCurrentUserSuccess]: (state, { payload }) => payload,
+    [userActions.updateEmailSuccess]: (state, { payload }) => payload,
+    [userActions.updateSharedSuccess]: (state, { payload }) => payload,
   },
 );
 

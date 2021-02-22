@@ -1,0 +1,26 @@
+.form {
+  display: block;
+  margin-right: -10px;
+}
+
+.input {
+  width: 302px;
+  height: 50px;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  border-color: transparent;
+}
+
+.box {
+  display: block;
+}
+
+.btn {
+  display: block;
+  background-color: #cd718e;
+  border-color: #fff;
+  border-radius: 20px;
+  margin-left: 34px;
+  width: 230px;
+  height: 70px;
+}
