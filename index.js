@@ -1,12 +1,19 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+var cors = require("cors");
 require("dotenv").config();
 const uriDb = process.env.URI_DB;
 
 const app = express();
 
-app.use(express.json({ extended: true }));
+app.use(cors());
+app.use(express.json());
+app.use(
+  express.urlencoded({
+    extended: true,
+  }),
+);
 
 app.use("/api/user", require("./routes/users.routes"));
 

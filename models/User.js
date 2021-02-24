@@ -2,8 +2,8 @@ const { Schema, model } = require("mongoose");
 
 const schema = new Schema(
   {
-    email: { type: String, default: null, unique: false },
-    shared: { type: String, default: false },
+    email: { type: String, sparse: true, default: undefined },
+    shared: { type: String, required: true },
   },
   { versionKey: false, timestamps: true },
 );

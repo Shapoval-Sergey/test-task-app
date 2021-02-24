@@ -4,11 +4,13 @@ import userActions from "./userActions";
 
 const baseURL = "http://localhost:3000/api/user";
 
-const createUser = () => async (dispatch) => {
+const createUser = ({ shared, email }) => async (dispatch) => {
   try {
     dispatch(userActions.createUserRequest());
-
-    const { data } = await axios.post(`${baseURL}/actions`);
+    const { data } = await axios.post(`${baseURL}/actions`, {
+      shared: shared,
+      email: email,
+    });
     console.log("data", data);
     const user = data;
     console.log("user", user);
@@ -24,11 +26,11 @@ const createUser = () => async (dispatch) => {
   }
 };
 
-const getCurrentUser = () => async (dispatch) => {
+const getCurrentUser = (userId) => async (dispatch) => {
   try {
     dispatch(userActions.getCurrentUserRequest());
 
-    const { data } = await axios.get(`${baseURL}/actions`);
+    const { data } = await axios.get(`${baseURL}/actions`, { userId });
 
     const user = data;
     console.log("user", user);
