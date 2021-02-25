@@ -45,11 +45,11 @@ const getCurrentUser = (userId) => async (dispatch) => {
   }
 };
 
-const updateUserEmail = ({ email }) => async (dispatch) => {
+const updateUserEmail = (email) => async (dispatch) => {
   try {
     dispatch(userActions.updateEmailRequest());
 
-    const { data } = await axios.patch(`${baseURL}/actions`, { email });
+    const { data } = await axios.patch(`${baseURL}/actions`, { email: email });
     console.log(data);
     dispatch(userActions.updateEmailSuccess(data));
   } catch (e) {

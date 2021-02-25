@@ -17,11 +17,11 @@ router.post("/actions", async (req, res) => {
 
 router.patch("/actions", async (req, res) => {
   try {
-    const { id, shared } = req.body;
+    const { id, shared, email } = req.body;
 
-    const user = await User.findByIdAndUpdate(
+    const user = await User.findOneAndUpdate(
       id,
-      { shared: shared },
+      { shared: shared, email: email },
       { returnOriginal: false },
     );
     res.status(200).json(user);
