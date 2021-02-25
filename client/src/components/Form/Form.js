@@ -5,9 +5,8 @@ import userOperations from "../../redux/user/userOperations";
 
 import s from "./Form.module.css";
 
-export default function Form({ onClose }) {
+export default function Form() {
   const [email, setEmail] = useState("");
-  // const [errorEmail, setErrorEmail] = useState("");
 
   const dispatch = useDispatch();
 
@@ -19,22 +18,10 @@ export default function Form({ onClose }) {
     (e) => {
       e.preventDefault();
 
-      if (email === "") {
-        // setErrorEmail(true);
-        return;
-      }
-
-      dispatch(userOperations.addUserEmail({ email }));
-
-      onClose();
+      dispatch(userOperations.updateUserEmail({ email }));
     },
-    [dispatch, email, onClose],
+    [dispatch, email],
   );
-
-  // const handleCanselingBtn = (e) => {
-  //   // console.log(e);
-  //   onClose();
-  // };
 
   return (
     <div className={s.form}>
@@ -47,7 +34,10 @@ export default function Form({ onClose }) {
           name="email"
           className={s.input}
         />
-        <button type="submit" className={s.btn}></button>
+        <button
+          type="submit"
+          className={!email ? s.btn : s.inputChange}
+        ></button>
       </form>
     </div>
   );

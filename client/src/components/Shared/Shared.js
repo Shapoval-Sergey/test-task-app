@@ -1,33 +1,36 @@
 import React from "react";
-import { connect } from "react-redux";
-import userOperations from "../../redux/user/userOperations";
 
 import s from "./Shared.module.css";
 
-function Shared({ user, onUpdateShared }) {
+export default function Shared({ user, onUpdateShared }) {
   const handleChange = () => {
     document.getElementById("vk").onclick = function () {
       window.open("https://www.vk.com", "a", "width=800,height=400");
-      user.shared = true;
+
+      onUpdateShared();
     };
 
     document.getElementById("facebook").onclick = function () {
       window.open("https://www.facebook.com", "a", "width=800,height=400");
+
+      onUpdateShared();
     };
 
     document.getElementById("twitter").onclick = function () {
       window.open("https://twitter.com", "a", "width=800,height=400");
+
+      onUpdateShared();
     };
 
     document.getElementById("ok").onclick = function () {
       window.open("https://www.ok.ru", "a", "width=800,height=400");
-    };
 
-    onUpdateShared(user._id, user.shared);
+      onUpdateShared();
+    };
   };
 
   return (
-    <div className={s.box}>
+    <div className={user.shared ? s.boxDisabled : s.box}>
       <h2>Поделиться с друзьями:</h2>
       <ul className={s.about__list}>
         <li className={s.about__item}>
@@ -119,9 +122,3 @@ function Shared({ user, onUpdateShared }) {
     </div>
   );
 }
-
-const mapDispatchToProps = {
-  onUpdateShared: userOperations.updateUserShared,
-};
-
-export default connect(null, mapDispatchToProps)(Shared);

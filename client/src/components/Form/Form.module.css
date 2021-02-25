@@ -17,10 +17,33 @@
 
 .btn {
   display: block;
+  cursor: pointer;
   background-color: #cd718e;
   border-color: #fff;
   border-radius: 20px;
   margin-left: 34px;
   width: 230px;
   height: 70px;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #7f4156;
+  border-color: #7f4156;
+}
+
+.inputChange {
+  display: block;
+  background-color: #fff;
+  border-color: #fff;
+  border-radius: 20px;
+  margin-left: 34px;
+  width: 230px;
+  height: 70px;
+}
+
+.inputChange:hover,
+.inputChange:focus {
+  background-color: #7f4156;
+  border-color: #7f4156;
 }

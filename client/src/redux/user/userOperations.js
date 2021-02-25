@@ -33,7 +33,6 @@ const getCurrentUser = (userId) => async (dispatch) => {
     const { data } = await axios.get(`${baseURL}/actions`, { userId });
 
     const user = data;
-    console.log("user", user);
 
     if (!data) {
       dispatch(userActions.getCurrentUserError());
@@ -51,6 +50,7 @@ const updateUserEmail = ({ email }) => async (dispatch) => {
     dispatch(userActions.updateEmailRequest());
 
     const { data } = await axios.patch(`${baseURL}/actions`, { email });
+    console.log(data);
     dispatch(userActions.updateEmailSuccess(data));
   } catch (e) {
     console.log(e);
@@ -60,8 +60,6 @@ const updateUserEmail = ({ email }) => async (dispatch) => {
 
 const updateUserShared = (userId, shared) => async (dispatch) => {
   try {
-    console.log(userId);
-    console.log(shared);
     dispatch(userActions.updateSharedRequest());
 
     const { data } = await axios.patch(`${baseURL}/actions`, {

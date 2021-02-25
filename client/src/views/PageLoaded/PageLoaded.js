@@ -7,33 +7,43 @@ import { connect } from "react-redux";
 import s from "./PageLoaded.module.css";
 import userOperations from "../../redux/user/userOperations";
 
-const storageName = "userData";
-
 class PageLoaded extends Component {
-  state = {
-    user: null,
-  };
   componentDidMount() {
-    const data = JSON.parse(localStorage.getItem(storageName));
+    const data = JSON.parse(localStorage.getItem("userData"));
+
+    this.props.onCurrentUser(data._id);
 
     if (!data) {
       this.props.onLoadUser({ email: null, shared: false });
-      this.props.onCurrentUser(this.props.userId);
-      const user = this.props.user;
-      localStorage.setItem(storageName, JSON.stringify(user));
-      const storage = JSON.parse(localStorage.getItem(storageName));
-      this.setState({ user: storage });
-    } else {
-      return this.setState({ user: data });
+      localStorage.setItem("userData", JSON.stringify(this.props.user));
     }
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.user !== this.props.user) {
+      const data = JSON.parse(localStorage.getItem("userData"));
+      if (data) {
+        this.props.onCurrentUser(data._id);
+      }
+      localStorage["userData"] = JSON.stringify(this.props.user);
+    }
+  }
+
+  handleClickShared = () => {
+    this.props.onUpdateShared(this.props.user._id, true);
+  };
+
   render() {
+    console.log(this.props.user);
+
     return (
       <div className={s.page}>
         <div className={s.logo}></div>
         <div className={s.content}>
-          <Shared user={this.state.user} />
+          <Shared
+            user={this.props.user}
+            onUpdateShared={this.handleClickShared}
+          />
           <Form />
         </div>
       </div>
@@ -42,13 +52,13 @@ class PageLoaded extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  userId: state.users.user._id,
   user: state.users.user,
 });
 
 const mapDispatchToProps = {
   onLoadUser: userOperations.createUser,
   onCurrentUser: userOperations.getCurrentUser,
+  onUpdateShared: userOperations.updateUserShared,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PageLoaded);
