@@ -30,7 +30,7 @@ export default function Shared({ user, onUpdateShared }) {
   };
 
   return (
-    <div className={user.shared ? s.boxDisabled : s.box}>
+    <div className={user && user.shared ? s.boxDisabled : s.box}>
       <h2>Поделиться с друзьями:</h2>
       <ul className={s.about__list}>
         <li className={s.about__item}>

@@ -9,22 +9,32 @@ import userOperations from "../../redux/user/userOperations";
 
 class PageLoaded extends Component {
   componentDidMount() {
-    const data = JSON.parse(localStorage.getItem("userData"));
-
-    this.props.onCurrentUser(data._id);
-
-    if (!data) {
+    let data = null;
+    if (!this.props.user) {
       this.props.onLoadUser({ email: null, shared: false });
       localStorage.setItem("userData", JSON.stringify(this.props.user));
     }
+    if (this.props.user) {
+      data = JSON.parse(localStorage.getItem("userData"));
+    }
+
+    this.props.onCurrentUser(data._id);
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.user !== this.props.user) {
-      const data = JSON.parse(localStorage.getItem("userData"));
-      if (data) {
-        this.props.onCurrentUser(data._id);
-      }
+    let data = null;
+    if (prevProps.user.shared !== this.props.user.shared) {
+      data = JSON.parse(localStorage.getItem("userData"));
+
+      this.props.onCurrentUser(data._id);
+
+      localStorage["userData"] = JSON.stringify(this.props.user);
+    }
+    if (prevProps.user.email !== this.props.user.email) {
+      data = JSON.parse(localStorage.getItem("userData"));
+
+      this.props.onCurrentUser(data._id);
+
       localStorage["userData"] = JSON.stringify(this.props.user);
     }
   }
@@ -34,14 +44,12 @@ class PageLoaded extends Component {
   };
 
   render() {
-    console.log(this.props.user);
-
     return (
       <div className={s.page}>
         <div className={s.logo}></div>
         <div className={s.content}>
           <Shared
-            user={this.props.user}
+            user={this.props.user && this.props.user}
             onUpdateShared={this.handleClickShared}
           />
           <Form />

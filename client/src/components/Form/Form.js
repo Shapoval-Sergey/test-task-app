@@ -18,7 +18,7 @@ export default function Form() {
     (e) => {
       e.preventDefault();
 
-      dispatch(userOperations.updateUserEmail({ email }));
+      dispatch(userOperations.updateUserEmail(email));
     },
     [dispatch, email],
   );
